@@ -7,7 +7,7 @@ public class StringSum {
 	{
 		this.inputString=inputString;
 	}
-	public int getSum()
+	public int Add()
 	{
 		if(inputString.equals(""))
 			return 0;
