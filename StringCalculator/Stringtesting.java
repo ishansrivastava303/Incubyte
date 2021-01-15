@@ -5,18 +5,20 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class Stringtesting {
+	private String inputString="";
 	
 	@Test
-	public void stringSum() {
-		StringSum obj=new StringSum("1,2,3,4,1");
-		assertEquals(11, obj.Add());
+	public void isInputValid()
+	{
+		StringSum obj=new StringSum(inputString);
+		assertEquals(true,obj.validInput());
 	}
 	
-	@Test
-	public void EmptyStringSum() {
-		StringSum obj=new StringSum("");
-		assertEquals(0, obj.Add());
-	}
+	
+	
+	
+	
+	
 
 	
 	
