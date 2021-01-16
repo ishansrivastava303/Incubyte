@@ -10,7 +10,7 @@ public class StringSum {
 	ArrayList<Integer> digits=new ArrayList<Integer>();
 	String d[];
 	HashSet<String>delimiter=new HashSet<String>();
-	String patternWithDefinedDelimiters="\\\\(\\[(\\n|.)+\\])+\\n(\\d*[^0-9]*\\d+)+";
+	String patternWithDefinedDelimiters="\\\\(\\[(\\n|.)\\])+\\n(\\d*[^0-9]*\\d+)+";
 	String patternWithCommaAndNewline="\\d+(\n*,*\\d+)+$";
 	String extractingDelimiterPattern="\\[(\\W?)\\]";
 	
@@ -20,21 +20,11 @@ public class StringSum {
 		this.inputString=inputString;
 	}
 	
-	public void extractingDelimiters()
-	{
-		
-			Pattern pattern = Pattern.compile(extractingDelimiterPattern);
-			Matcher matcher = pattern.matcher(inputString);
-			while(matcher.find())
-			{
-				String s=matcher.group(1);
-				delimiter.add(s);
-			}
-			System.out.println(delimiter);
-	}
 	
-	public void extractingDigits() throws InvalidInputString
+	
+	public boolean extractingDigits() 
 	{
+		extractingDelimiters();
 		String number="";
 		int index=inputString.indexOf("\n");
 		for(int i=index+1;i<inputString.length();i++)
@@ -47,7 +37,7 @@ public class StringSum {
 			else
 			{
 				if(!delimiter.contains(String.valueOf(c)))
-					throw new InvalidInputString();
+					return false;
 				if(Pattern.matches("\\d+", number))
 				{
 					digits.add(Integer.parseInt(number));
@@ -56,21 +46,35 @@ public class StringSum {
 				
 			}
 		}
-		digits.add(Integer.parseInt(number));
+		if(Pattern.matches("\\d+", number))
+		{
+			digits.add(Integer.parseInt(number));
+		}
 		System.out.println(digits);
+		return true;
+	}
+	public void extractingDelimiters()
+	{
+		
+			Pattern pattern = Pattern.compile(extractingDelimiterPattern);
+			Matcher matcher = pattern.matcher(inputString);
+			while(matcher.find())
+			{
+				String s=matcher.group(1);
+				delimiter.add(s);
+			}
+			System.out.println(delimiter);
 	}
 	public boolean validInput() 
 	{
 		
 		if(Pattern.matches(patternWithDefinedDelimiters, inputString) || inputString.equals(""))
 		{
-			extractingDelimiters();
 			return true;
 		}
 			
 		if(Pattern.matches(patternWithCommaAndNewline, inputString))
 		{
-			//extractingDigits(inputString);
 			return true;
 		}
 			
