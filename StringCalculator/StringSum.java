@@ -6,25 +6,67 @@ import java.util.HashSet;
 import java.util.regex.*;
 public class StringSum {
 	
-	String inputString;
+	private static String inputString;
 	ArrayList<Integer> digits=new ArrayList<Integer>();
 	String d[];
 	HashSet<String>delimiter=new HashSet<String>();
 	String patternWithDefinedDelimiters="\\\\(\\[(\\n|.)\\])+\\n(\\d*[^0-9]*\\d+)+";
 	String patternWithCommaAndNewline="\\d+(\n*,*\\d+)+$";
 	String extractingDelimiterPattern="\\[(\\W?)\\]";
+	ArrayList<Integer>negNumberIndices=new ArrayList<Integer>();
+	ArrayList<Integer>negNumbers=new ArrayList<Integer>();
 	
 	
-	StringSum(String inputString)
+	
+	public void  setString(String input)
 	{
-		this.inputString=inputString;
+		inputString=input;
 	}
 	
+	public static String getString()
+	{
+		return inputString;
+	}
 	
+	public void findNegativeNumbers()
+	{
+		String number="";
+		for(int i=0;i<negNumberIndices.size();i++)
+		{
+			if(negNumberIndices.get(i)==inputString.length()-1)
+				break;
+			number="";
+			if(Character.isDigit(inputString.charAt(negNumberIndices.get(i)+1)))
+			{
+				for(int j=negNumberIndices.get(i)+1;j<inputString.length();j++)
+				{
+					if(Character.isDigit(inputString.charAt(j)))
+						number+=String.valueOf(inputString.charAt(j));
+					else
+						break;
+				}
+				negNumbers.add(Integer.parseInt(number)*(-1));
+			}
+		}
+		System.out.println("negNumbers:"+negNumbers);
+	}
+	
+	public void findNegSignIndices()
+	{
+		int index=inputString.indexOf("\n");
+		int negSignIndex=inputString.indexOf("-", index+1);
+		while(negSignIndex>=0)
+		{
+			negNumberIndices.add(negSignIndex);
+			negSignIndex=inputString.indexOf("-",negSignIndex+1);
+		}
+	}
 	
 	public boolean extractingDigits() 
 	{
 		extractingDelimiters();
+		findNegSignIndices();
+		findNegativeNumbers();
 		String number="";
 		int index=inputString.indexOf("\n");
 		for(int i=index+1;i<inputString.length();i++)
@@ -36,6 +78,7 @@ public class StringSum {
 			}
 			else
 			{
+				
 				if(!delimiter.contains(String.valueOf(c)))
 					return false;
 				if(Pattern.matches("\\d+", number))
@@ -46,13 +89,16 @@ public class StringSum {
 				
 			}
 		}
+		
 		if(Pattern.matches("\\d+", number))
 		{
 			digits.add(Integer.parseInt(number));
 		}
+		
 		System.out.println(digits);
 		return true;
 	}
+	
 	public void extractingDelimiters()
 	{
 		
