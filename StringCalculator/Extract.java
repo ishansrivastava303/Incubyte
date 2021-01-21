@@ -14,34 +14,34 @@ public class Extract {
 	ArrayList<BigInteger>negNumbers=new ArrayList<BigInteger>();
 	ArrayList<String>regexSpecialCharacters;
 	PatternMatching patternmatching=new PatternMatching();
-	
+
 	public void extractingDelimiters(String inputString)
 	{
-		
-			Pattern pattern = Pattern.compile(patternmatching.getPattern(inputString));
-			Matcher matcher = pattern.matcher(inputString);
-			while(matcher.find())
-			{
-				String s=matcher.group(1);
-				delimiter.add(s);
-			}
-			System.out.println("delimiter:"+delimiter);
+
+		Pattern pattern = Pattern.compile(patternmatching.getPattern(inputString));
+		Matcher matcher = pattern.matcher(inputString);
+		while(matcher.find())
+		{
+			String s=matcher.group(1);
+			delimiter.add(s);
+		}
+		//System.out.println("delimiter:"+delimiter);
 	}
-	
+
 	public void extractNegativeNumbers(String s)
 	{
 		Pattern pattern=Pattern.compile(patternmatching.getNegativeNumberPattern());
-        Matcher matcher=pattern.matcher(s);
-        while(matcher.find())
-			{
-			    negNumbers.add(new BigInteger(matcher.group(1)));
-			}
+		Matcher matcher=pattern.matcher(s);
+		while(matcher.find())
+		{
+			negNumbers.add(new BigInteger(matcher.group(1)));
+		}
 	}
-	
+
 	public  String generateSplitRegexExpression(String inputString)
 	{
 		String splitDelimiter="";
-		
+
 		regexSpecialCharacters=patternmatching.getRegexSpecialCharacters();
 		for(String s:delimiter)
 		{
@@ -57,42 +57,42 @@ public class Extract {
 						if(str.equals("\n"))
 							splitDelimiter+="\\n";
 						else
-						splitDelimiter+="\\"+str;
+							splitDelimiter+="\\"+str;
 					}
-						
+
 					else
 						splitDelimiter+=str;
 				}
 				splitDelimiter+="|";
-				
+
 			}
-				
+
 		}
-		
+
 		splitDelimiter=splitDelimiter.substring(0,splitDelimiter.length()-1);
 		return splitDelimiter;
-		
-		
+
+
 	}
-	
+
 	public boolean extractDigits(String inputString)
 	{
 		extractingDelimiters(inputString);
-		
+
 		int index=0;
 		boolean validDelimiter=true;
-		
+
 		String splitDelimiter=generateSplitRegexExpression(inputString);
-		
+
 		index=inputString.indexOf("]\n");
-		
+
 		String str=inputString.substring(index+2);
-		
-		
-		System.out.println("splitdelimiter:"+splitDelimiter);
-		
+
+
+		//System.out.println("splitdelimiter:"+splitDelimiter);
+
 		String ans[]=str.split(splitDelimiter);
-		
+
 		for(String i:ans)
 		{
 			if(!Pattern.matches("\\d+", i))
@@ -101,15 +101,15 @@ public class Extract {
 				extractNegativeNumbers(i);
 				continue;
 			}
-				
-			
+
+
 			else
 				posnumbers.add(new BigInteger(i));
 		}
-		
+
 		Numbers.setValidNumbers(posnumbers);
 		Numbers.setNegativeNumbers(negNumbers);
-		
+
 		if(validDelimiter)
 			return true;
 		else

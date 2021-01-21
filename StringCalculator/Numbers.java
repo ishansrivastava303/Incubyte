@@ -4,11 +4,11 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 
 public class Numbers {
-	
+
 	static ArrayList<BigInteger>negNumbers=new ArrayList<BigInteger>();
-	
+
 	static ArrayList<BigInteger>validNumbers=new ArrayList<BigInteger>();
-	
+
 	public static void setValidNumbers(ArrayList<BigInteger> a)
 	{
 		validNumbers=a;
@@ -27,7 +27,7 @@ public class Numbers {
 	}
 	public static void findNegativeNumbers() throws InvalidInputString
 	{
-		
+
 		if(negNumbers.size()>0)
 		{
 			String s="negatives not allowed:";
@@ -35,7 +35,7 @@ public class Numbers {
 				s+=negNumbers.get(i)+",";
 			throw new InvalidInputString(s);
 		}
-			
+
 	}
 	public static BigInteger Add()
 	{
@@ -46,7 +46,7 @@ public class Numbers {
 			int compareValue=validNumbers.get(i).compareTo(thousand);
 			if(compareValue==1)
 				continue;
-			System.out.println(validNumbers.get(i));
+			//System.out.println(validNumbers.get(i));
 			sum=sum.add(validNumbers.get(i));
 		}
 		return sum;
