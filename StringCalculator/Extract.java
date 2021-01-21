@@ -14,7 +14,6 @@ public class Extract {
 	ArrayList<BigInteger>negNumbers=new ArrayList<BigInteger>();
 	ArrayList<String>regexSpecialCharacters;
 	PatternMatching patternmatching=new PatternMatching();
-	//StringSum stringsum=new StringSum();
 	
 	public void extractingDelimiters(String inputString)
 	{

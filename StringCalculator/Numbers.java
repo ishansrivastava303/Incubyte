@@ -4,8 +4,9 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 
 public class Numbers {
-	//ArrayList<Integer>negNumberIndices=new ArrayList<Integer>();
+	
 	static ArrayList<BigInteger>negNumbers=new ArrayList<BigInteger>();
+	
 	static ArrayList<BigInteger>validNumbers=new ArrayList<BigInteger>();
 	
 	public static void setValidNumbers(ArrayList<BigInteger> a)
@@ -39,8 +40,12 @@ public class Numbers {
 	public static BigInteger Add()
 	{
 		BigInteger sum=BigInteger.ZERO;
+		BigInteger thousand=new BigInteger("1000");
 		for(int i=0;i<validNumbers.size();i++)
 		{
+			int compareValue=validNumbers.get(i).compareTo(thousand);
+			if(compareValue==1)
+				continue;
 			sum=sum.add(validNumbers.get(i));
 		}
 		return sum;

@@ -12,8 +12,8 @@ import org.junit.runner.RunWith;
 
 
 public class StringTesting {
-	String inputString="\\[\t\t\t\t][,][\\\\n0][**9dd%\n\n\nnnnntt]\n2,2\t\t\t\t3,40";
 	
+	 String inputString="\\[\t\t\t\t][,][\\\\n0][**9dd%\n\n\nnnnntt]\n2,2\t\t\t\t3,1000";
 	 PatternMatching pattern=new PatternMatching();	
 	 Extract extract=new Extract();
 	 Numbers number=new Numbers();
@@ -49,7 +49,7 @@ public class StringTesting {
 	@Order(4)
 	public void checkSumOfValidNumbers()
 	{
-		assertEquals(new BigInteger("47"),Numbers.Add());
+		assertEquals(new BigInteger("1007"),Numbers.Add());
 	}
 
 

@@ -9,6 +9,7 @@ public class PatternMatching {
 	String extractingDelimiterPattern="\\[([^\\[\\]]+)\\]";
 	String extractingDelimiterPattern2="\\d+(\\W?)\\d+";
 	ArrayList<String>regexSpecialCharacters=new ArrayList<String>();
+	
 	//String patternWithDefinedDelimiters="\\\\(\\[.*?\\])+\\n\\d.*";
 	//String patternWithDefinedDelimiters2="\\\\(\\n|.)+\\n(\\d*[^0-9]*\\d+)+";
 	//String extractingDelimiterPattern="\\[(\\s+.+?|.*?)\\]";
