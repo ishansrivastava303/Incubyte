@@ -13,23 +13,29 @@ import org.junit.runner.RunWith;
 
 public class StringTesting {
 	
-	 String inputString="\\[\t\t\t\t][,][\\\\n0][**9dd%\n\n\nnnnntt]\n2,2\t\t\t\t3,1000";
+	 String inputString="\\[\t\t\t\t][,][\\\\n0][**9dd%\n\n\nnnnntt]\n2,2\t\t\t\t3,100,1000,2-1000";
 	 PatternMatching pattern=new PatternMatching();	
 	 Extract extract=new Extract();
 	 Numbers number=new Numbers();
 	
 	@Test 
 	@Order(1)
-	public void validStringFormat()
+	public void validStartOfString()
 	{
 		assertEquals(true,pattern.isValidPattern(inputString));
-		
-		
+			
+	}
+	
+	@Test
+	@Order(2)
+	public void isEmptyString()
+	{
+		assertEquals(0, pattern.isEmptyInput(inputString));
 	}
 	
 
 	@Test
-	@Order(2)
+	@Order(3)
 	public void validDelimitersBetweenDigits() 
 	{
 			assertEquals(true,extract.extractDigits(inputString));
@@ -38,7 +44,7 @@ public class StringTesting {
 	}	
 	
 	@Test
-	@Order(3)
+	@Order(4)
 	public void checkNegativeNumbers()
 	{
 		
@@ -46,10 +52,10 @@ public class StringTesting {
 	}
 	
 	@Test
-	@Order(4)
+	@Order(5)
 	public void checkSumOfValidNumbers()
 	{
-		assertEquals(new BigInteger("1007"),Numbers.Add());
+		assertEquals(new BigInteger("1107"),Numbers.Add());
 	}
 
 

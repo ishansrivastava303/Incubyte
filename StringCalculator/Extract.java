@@ -28,6 +28,16 @@ public class Extract {
 			System.out.println("delimiter:"+delimiter);
 	}
 	
+	public void extractNegativeNumbers(String s)
+	{
+		Pattern pattern=Pattern.compile(patternmatching.getNegativeNumberPattern());
+        Matcher matcher=pattern.matcher(s);
+        while(matcher.find())
+			{
+			    negNumbers.add(new BigInteger(matcher.group(1)));
+			}
+	}
+	
 	public  String generateSplitRegexExpression(String inputString)
 	{
 		String splitDelimiter="";
@@ -58,6 +68,8 @@ public class Extract {
 			}
 				
 		}
+		
+		splitDelimiter=splitDelimiter.substring(0,splitDelimiter.length()-1);
 		return splitDelimiter;
 		
 		
@@ -76,7 +88,6 @@ public class Extract {
 		
 		String str=inputString.substring(index+2);
 		
-		splitDelimiter=splitDelimiter.substring(0,splitDelimiter.length()-1);
 		
 		System.out.println("splitdelimiter:"+splitDelimiter);
 		
@@ -84,14 +95,14 @@ public class Extract {
 		
 		for(String i:ans)
 		{
-			if(!Pattern.matches("-?\\d+", i))
+			if(!Pattern.matches("\\d+", i))
 			{
 				validDelimiter=false;
+				extractNegativeNumbers(i);
 				continue;
 			}
 				
-			if(Pattern.matches("-\\d+", i))
-				negNumbers.add(new BigInteger(i));
+			
 			else
 				posnumbers.add(new BigInteger(i));
 		}

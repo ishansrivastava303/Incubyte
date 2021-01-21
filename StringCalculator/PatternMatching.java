@@ -8,6 +8,7 @@ public class PatternMatching {
 	String patternWithCommaAndNewline="\\d+(\n*,*\\d+)+$";
 	String extractingDelimiterPattern="\\[([^\\[\\]]+)\\]";
 	String extractingDelimiterPattern2="\\d+(\\W?)\\d+";
+	String negativeNumberPattern="(\\-\\d+)";
 	ArrayList<String>regexSpecialCharacters=new ArrayList<String>();
 	
 	//String patternWithDefinedDelimiters="\\\\(\\[.*?\\])+\\n\\d.*";
@@ -47,15 +48,25 @@ public class PatternMatching {
 		
 	}
 	
+	public String getNegativeNumberPattern()
+	{
+		return negativeNumberPattern;
+	}
+	
+	public int isEmptyInput(String inputString)
+	{
+		if(inputString.equals(""))
+			return 0;
+		else
+			return 1;
+	}
+	
 	public boolean isValidPattern(String inputString) 
 	{
 		
-		if(Pattern.matches(patternWithDefinedDelimiters, inputString) || inputString.equals("") 
-		|| Pattern.matches(patternWithCommaAndNewline, inputString) )
-			{
-				return true;
-			}
-			
+		if(Pattern.matches(patternWithDefinedDelimiters, inputString))
+			return true;
+		
 		else
 			return false;
 		

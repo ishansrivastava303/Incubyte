@@ -46,6 +46,7 @@ public class Numbers {
 			int compareValue=validNumbers.get(i).compareTo(thousand);
 			if(compareValue==1)
 				continue;
+			System.out.println(validNumbers.get(i));
 			sum=sum.add(validNumbers.get(i));
 		}
 		return sum;
