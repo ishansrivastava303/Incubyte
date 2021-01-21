@@ -6,19 +6,65 @@ import java.util.HashSet;
 import java.util.regex.*;
 public class StringSum {
 	
-	private static String inputString;
+	private static String inputString="2,2,3,,,400,%,,,-600,5678,90,,89,,87,9\n\n05***667,903,-4,,,,,,,,,*******-4";
 	ArrayList<Integer> digits=new ArrayList<Integer>();
 	String d[];
-	HashSet<String>delimiter=new HashSet<String>();
+	static ArrayList<String>delimiter=new ArrayList<String>();
 	String patternWithDefinedDelimiters="\\\\(\\[(\\n|.)\\])+\\n(\\d*[^0-9]*\\d+)+";
 	String patternWithCommaAndNewline="\\d+(\n*,*\\d+)+$";
 	String extractingDelimiterPattern="\\[(\\W?)\\]";
 	ArrayList<Integer>negNumberIndices=new ArrayList<Integer>();
 	ArrayList<Integer>negNumbers=new ArrayList<Integer>();
+	HashSet<String>nodes=new HashSet<String>();
+	public static void main(String args[])
+	{
+		delimiter.add("%");
+		delimiter.add(",");
+		delimiter.add("-");
+		delimiter.add("^");
+		delimiter.add("*");
+		//StringSum obj=new StringSum();
+		String s[]=inputString.split("%|,|\\*\\*\\*|-|\\n\\n");
+		for(int i=0;i<s.length;i++)
+			System.out.println(s[i]+" ");
+		//System.out.println(s.length);
+		//obj.print();
+	}
 	
+	public Integer extractDigits(String s)
+	{
+		if(s.equals(""))
+			return 0;
+		if(Pattern.matches("-?\\d+", s))
+			return Integer.parseInt(s);
+		for(int i=0;i<delimiter.size();i++)
+		{
+			if(nodes.contains(s))
+				continue;
+			else
+				nodes.add(s);
+			int index=s.indexOf(delimiter.get(i));
+			if(index==-1)
+				continue;
+			Integer left=extractDigits(s.substring(0,index));
+			
+			if(left !=0)
+				digits.add(left);
+			
+			Integer right=extractDigits(s.substring(index+1,s.length()));
+		
+			if(right!=0)
+				digits.add(right);
+		}
+		return 0;
+	}
 	
+	public void print()
+	{
+		System.out.println(digits);
+	}
 	
-	public void  setString(String input)
+	/*public void  setString(String input)
 	{
 		inputString=input;
 	}
@@ -126,6 +172,6 @@ public class StringSum {
 			
 		return false;
 		
-	}
+	}*/
 	
 }

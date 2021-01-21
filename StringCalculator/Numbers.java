@@ -35,6 +35,15 @@ public class Numbers {
 		}
 			
 	}
+	public static Integer Add()
+	{
+		int sum=0;
+		for(int i=0;i<validNumbers.size();i++)
+		{
+			sum+=validNumbers.get(i);
+		}
+		return sum;
+	}
 	/*
 	public void findNegativeNumbers(String inputString)
 	{

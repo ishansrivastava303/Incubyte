@@ -10,9 +10,8 @@ import org.junit.runner.RunWith;
 
 
 public class StringTesting {
-	 String inputString="\\[-][,][%]\n2,2,3,,,400,%,,$,600,5678,90,,89,,87,905667,903,4";
+	String inputString="\\[\t\t\t\t][,][\\\\n0][**9dd%\n\n\nnnnntt]\n2,2\t\t\t\t3,-40";
 	
-	// StringSum stringsum=new StringSum();
 	 PatternMatching pattern=new PatternMatching();	
 	 Extract extract=new Extract();
 	 Numbers number=new Numbers();
@@ -21,20 +20,18 @@ public class StringTesting {
 	@Order(1)
 	public void validStringFormat()
 	{
-		//stringsum.setString(inputString);
 		assertEquals(true,pattern.isValidPattern(inputString));
+		
 		
 	}
 	
 
 	@Test
-	 @Order(2)
+	@Order(2)
 	public void validDelimitersBetweenDigits() 
 	{
-		//System.out.println(stringsum.getString());
-			assertEquals(true,extract.extractingDigits(inputString));
-			//System.out.println(Numbers.getValidNumbers());
-			//System.out.println(Numbers.getNegativeNumbers());
+			assertEquals(true,extract.extractDigits(inputString));
+			
 		
 	}	
 	
@@ -44,6 +41,13 @@ public class StringTesting {
 	{
 		
 		assertThrows(InvalidInputString.class, () ->Numbers.findNegativeNumbers(),"Exception should be thrown for negative numbers");
+	}
+	
+	@Test
+	@Order(4)
+	public void checkSumOfValidNumbers()
+	{
+		assertEquals(33,Numbers.Add());
 	}
 
 
