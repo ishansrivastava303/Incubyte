@@ -1,16 +1,17 @@
 package StringCalculator;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Extract {
-	ArrayList<Integer> posnumbers=new ArrayList<Integer>();
+	ArrayList<BigInteger> posnumbers=new ArrayList<BigInteger>();
 	String d[];
 	static HashSet<String>delimiter=new HashSet<String>();
 	ArrayList<Integer>negNumberIndices=new ArrayList<Integer>();
-	ArrayList<Integer>negNumbers=new ArrayList<Integer>();
+	ArrayList<BigInteger>negNumbers=new ArrayList<BigInteger>();
 	ArrayList<String>regexSpecialCharacters;
 	PatternMatching patternmatching=new PatternMatching();
 	//StringSum stringsum=new StringSum();
@@ -91,9 +92,9 @@ public class Extract {
 			}
 				
 			if(Pattern.matches("-\\d+", i))
-				negNumbers.add(Integer.parseInt(i));
+				negNumbers.add(new BigInteger(i));
 			else
-				posnumbers.add(Integer.parseInt(i));
+				posnumbers.add(new BigInteger(i));
 		}
 		
 		Numbers.setValidNumbers(posnumbers);

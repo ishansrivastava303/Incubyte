@@ -2,6 +2,8 @@ package StringCalculator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.math.BigInteger;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -10,7 +12,7 @@ import org.junit.runner.RunWith;
 
 
 public class StringTesting {
-	String inputString="\\[\t\t\t\t][,][\\\\n0][**9dd%\n\n\nnnnntt]\n2,2\t\t\t\t3,-40";
+	String inputString="\\[\t\t\t\t][,][\\\\n0][**9dd%\n\n\nnnnntt]\n2,2\t\t\t\t3,40";
 	
 	 PatternMatching pattern=new PatternMatching();	
 	 Extract extract=new Extract();
@@ -47,7 +49,7 @@ public class StringTesting {
 	@Order(4)
 	public void checkSumOfValidNumbers()
 	{
-		assertEquals(33,Numbers.Add());
+		assertEquals(new BigInteger("47"),Numbers.Add());
 	}
 
 
