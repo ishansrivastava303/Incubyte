@@ -8,9 +8,7 @@ import java.util.regex.Pattern;
 
 public class Extract {
 	ArrayList<BigInteger> posnumbers=new ArrayList<BigInteger>();
-	String d[];
 	static HashSet<String>delimiter=new HashSet<String>();
-	ArrayList<Integer>negNumberIndices=new ArrayList<Integer>();
 	ArrayList<BigInteger>negNumbers=new ArrayList<BigInteger>();
 	ArrayList<String>regexSpecialCharacters;
 	PatternMatching patternmatching=new PatternMatching();
@@ -56,6 +54,9 @@ public class Extract {
 				for(int i=0;i<s.length();i++)
 				{
 					String str=String.valueOf(s.charAt(i));
+					
+					/*Here we are checking that if any special character is in the list of valid delimiters 
+					 * then we have to add an escape character in front of it. */
 					if(regexSpecialCharacters.contains(str))
 					{
 						if(str.equals("\n"))
