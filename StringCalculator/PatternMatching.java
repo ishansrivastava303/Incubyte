@@ -34,11 +34,6 @@ public class PatternMatching {
 	public String getPattern(String inputString)
 	{
 		
-		/*if(Pattern.matches(patternWithDefinedDelimiters, inputString))
-			return extractingDelimiterPattern;
-		
-		else
-			return extractingDelimiterPattern2;*/
 		return extractingDelimiterPattern;
 		
 	}
