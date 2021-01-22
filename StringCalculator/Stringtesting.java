@@ -22,8 +22,8 @@ public class StringTesting {
 	@Order(1)
 	public void validStartOfString()
 	{
-		//check that the start of the string is of given format://[any character][any character]\n1 
-		//and the whole string should end with a digit.
+		/*check that the start of the string is of given format://[any character][any character]\n1 
+		and the whole string should end with a digit.*/
 		assertEquals(true,pattern.isValidPattern(inputString));
 			
 	}
@@ -32,7 +32,7 @@ public class StringTesting {
 	@Order(2)
 	public void isEmptyString()
 	{
-		//check that if the inputstring is empty then it returns 0 
+		/*check that if the inputstring is empty then it returns 0*/
 		assertEquals(0, pattern.isEmptyInput(inputString));
 	}
 	
@@ -41,7 +41,7 @@ public class StringTesting {
 	@Order(3)
 	public void validDelimitersBetweenDigits() 
 	{
-			//check that the delimiters been used between digits have been properly defined as per the given format.
+			/*check that the delimiters been used between digits have been properly defined as per the given format.*/
 			assertEquals(true,extract.extractDigits(inputString));
 	}	
 	
@@ -49,7 +49,7 @@ public class StringTesting {
 	@Order(4)
 	public void checkNegativeNumbers()
 	{
-		//checks that if any negative number is present the exception is thrown.
+		/*checks that if any negative number is present the exception is thrown.*/
 		assertThrows(InvalidInputString.class, () ->Numbers.findNegativeNumbers(),"Exception should be thrown for negative numbers");
 	}
 	
@@ -57,7 +57,7 @@ public class StringTesting {
 	@Order(5)
 	public void checkSumOfValidNumbers()
 	{
-		//checks that the sum of vaid numbers are calculated correctly.
+		/*checks that the sum of vaid numbers are calculated correctly.*/
 		assertEquals(new BigInteger("1107"),Numbers.Add());
 	}
 

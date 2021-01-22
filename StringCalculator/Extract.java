@@ -15,6 +15,7 @@ public class Extract {
 	ArrayList<String>regexSpecialCharacters;
 	PatternMatching patternmatching=new PatternMatching();
 
+	/*This function extracts the valid delimiters from the given format //[any character][any character]\n1*/
 	public void extractingDelimiters(String inputString)
 	{
 
@@ -28,6 +29,7 @@ public class Extract {
 		//System.out.println("delimiter:"+delimiter);
 	}
 
+	/*This function extracts negative numbers from the string if present.*/
 	public void extractNegativeNumbers(String s)
 	{
 		Pattern pattern=Pattern.compile(patternmatching.getNegativeNumberPattern());
@@ -38,6 +40,8 @@ public class Extract {
 		}
 	}
 
+	/*This function generates the regex expression which will be used as delimiter in split() function to split the string and 
+	 * get the valid numbers*/
 	public  String generateSplitRegexExpression(String inputString)
 	{
 		String splitDelimiter="";
@@ -75,6 +79,7 @@ public class Extract {
 
 	}
 
+	/*This functions extracts the positive and negative numbers (if present) from the string and store it in their respective data structure.*/
 	public boolean extractDigits(String inputString)
 	{
 		extractingDelimiters(inputString);
